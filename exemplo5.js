@@ -1,0 +1,1 @@
+var numero = prompt("Digite os 2 números aqui:")
