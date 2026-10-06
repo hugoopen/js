@@ -8,7 +8,7 @@ let valorEntrada = parseFloat(question("Digite o valor valor de entrada:"))
 let quantidadesPareclas = parseInt(question("Digite a quantidade escolhida:"))
 let possuiCNH = question("Você possui CNH? ")
 
-if (idade >= 18 && possuiCNH ){
-    console.log("");
-    
+if (idade >= 18 && possuiCNH ){ 
+} else{
+    console.log("Financiamento não autorizado.");
 }
