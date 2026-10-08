@@ -39,12 +39,12 @@ while (opcao !== 4) {
             if ( valorSaque >0 && valorSaque <=saldo) {
                 console.log("Saque efetuado com sucesso!");
                 question("\n Precione enter para voltar ao menu.")
-            } else if (valorSaque > saldo){
-                console.log("Saldo insuficiente, digite outro valor!");
+            } else if (valorSaque >= saldo){
+                console.log("Saldo insuficiente, digite o valor disponivel para!");
                 question("\n Precione enter para voltar ao menu.") 
-            } else if (valorSaque > saldo){
+            } else {
                 console.log("O valor do saque não pode ser menor que 0, tente novamente");
-                console.clear
+                "\n Precione enter para voltar ao menu.";
             }
             break;
             
