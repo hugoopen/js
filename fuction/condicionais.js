@@ -14,12 +14,12 @@ let notas = []
 
 for (let i = 0; i < notas.length; i++) {
     let nota = Number(entrada.question(`Digite aqui as ${i + 1} notas das suas avaliacoes: `))
-    nota.push()
+    notas.push(nota)
 }
 
 let soma = 0
 
-for (let i = 0; i < notas.length; i++) {
+for  (let i = 0; i < 3; i += 1) {
 
     soma += notas[i]
 }
@@ -31,9 +31,3 @@ console.log("\n===== RESULTADO DO ALUNO =====");
 console.log(`Notas: ${notas}`);
 console.log(`Media: ${media.toFixed(2)}`);
 console.log(`Situacao: ${resultado}`);
-
-
-
-
-
-
