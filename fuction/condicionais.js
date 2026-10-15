@@ -12,14 +12,14 @@ function verificarResultado(nota) {
 
 let notas = []
 
-for (let i = 0; i < notas.length; i++) {
+for (let i = 0; i < 3; i += 1) {
     let nota = Number(entrada.question(`Digite aqui as ${i + 1} notas das suas avaliacoes: `))
     notas.push(nota)
 }
 
 let soma = 0
 
-for  (let i = 0; i < 3; i += 1) {
+for (let i = 0; i < notas.length; i++) {
 
     soma += notas[i]
 }
