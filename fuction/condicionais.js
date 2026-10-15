@@ -29,7 +29,7 @@ let resultado = verificarResultado(media);
 
 console.log("\n===== RESULTADO DO ALUNO =====");
 console.log(`Notas: ${notas}`);
-console.log(`Media: ${media.toFixed2}`);
+console.log(`Media: ${media.toFixed(2)}`);
 console.log(`Situacao: ${resultado}`);
 
 
