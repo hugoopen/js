@@ -44,19 +44,43 @@ while (opcao !== 8) {
 
         case 5:
             for (let i = 0; i < produtos.length; i++) {
-                produtos = Number('Digite o valor do indice que deseja procurar: ')
-                if (produtos[i] == produtos.length[i]) {
-                    console.log(`Este é o produto que voce procura: ${produtos}`);
+                let buscarIndice = Number(question('Digite o valor do indice que deseja procurar: '))
+                if (buscarIndice < 0 || buscarIndice > produtos.length) {
+                    console.log(`Produto não foi encontrado, digite um indice válido! Volte ao menu e tente novamnente.`);
                 } else {
-                    console.log(`Produto não foi encontrado! Volte ao menu`);
+                    console.log(produtos[buscarIndice]);
                 }
                 question('Pressione enter para voltar ao menu.')
                 break;
             }
+
+        case 6:
+            let indice = Number(question('Digite o indice do produto que você deseja substituir:'))
+            let substituirProduto = (question('Digite o nome do novo produto:'))
+            produtos.splice(indice, 1, substituirProduto)
+            console.log(produtos);
+            question('Pressione enter para voltar ao menu.')
+            break;
+
+        case 7:
+            let posicao = Number(question('Digite o indice do produto que voce deseja substituir:'))
+            produtos.splice(posicao, 1)
+            console.log(produtos);
+            question('Pressione enter para voltar ao menu.')
+            break;
+
+        case 8:
+            console.log('Saindo do programa');
+            question('Pressione enter para voltar ao menu.')
+            break;
+
         default:
+            console.log('Digite um valor valido.');
+            question('Pressione enter para voltar ao menu.')
             break;
     }
 }
+console.log('Programa encerrado...');
 
 
 
