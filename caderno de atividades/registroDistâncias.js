@@ -1,17 +1,29 @@
 const { question } = require("readline-sync");
-const encerrarRegistro = 0
+
+let quantidadeTrechos = 0
+let distanciaTotal = 0
 let maiorDistancia = 0
-let totalDistancia = 0
-let distancias = []
 
-while (encerrarRegistro !== 0) {
-    let registrarDistancia = question('Digite a distancia percorrida por trecho em km: ')
+let distancia = parseFloat(question('Digite a distancia do trecho 1 em km (0 para encerrar): '))
 
-    if (registrarDistancia >0) {
-        console.log('Digite um valor valido!');
+while (distancia !== 0 && quantidadeTrechos < 3) {
+    if (distancia < 0) {
+        console.log('Opcao invalida! Digite um valor positivo');
+    } else{
+        quantidadeTrechos ++
+        distanciaTotal += distancia
+
+        if (distancia > maiorDistancia) {
+            maiorDistancia = distancia
+        }
     }
-
-    if (registrarDistancia) {
-        maiorDistancia++
+    if (quantidadeTrechos < 3) {
+        distancia = parseFloat(question(`Digite a distancia do trecho ${quantidadeTrechos + 1} em km (0 para encerrar): `))
     }
 }
+
+console.log(`Trechos percorridos: ${quantidadeTrechos}`);
+console.log(`Distancia total: ${distanciaTotal}`);
+console.log(`Maior distancia: ${maiorDistancia}`);
+
+
