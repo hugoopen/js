@@ -12,14 +12,14 @@ for (let i = 0; i < temperatura.length; i++) {
 }
 console.log(`Esta foi a maior temperatura:${maiorTemperatura}`);
 
-for (let i = 0; i < temperatura.length; i++){
+for (let i = 0; i < temperatura.length; i++) {
     if (temperatura[i] < menorTemperatura) {
         menorTemperatura = temperatura[i];
     }
 }
 console.log(`Esta foi a menor temperatura:${menorTemperatura}`);
 
-for (let i = 0; i < temperatura.length; i++){
+for (let i = 0; i < temperatura.length; i++) {
     soma += temperatura[i];
 }
 console.log(`A soma total das temperaturas é:${soma.toFixed(0)}`);
@@ -27,7 +27,7 @@ console.log(`A soma total das temperaturas é:${soma.toFixed(0)}`);
 media = soma / temperatura.length;
 console.log(`A média das temperaturas é:${media.toFixed(0)}`);
 
-for (let i = 0; i < temperatura.length; i++){
+for (let i = 0; i < temperatura.length; i++) {
     if (temperatura[i] > 30) {
         quantidadeTemperatura++;
     }
