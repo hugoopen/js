@@ -1,10 +1,10 @@
 const { question } = require("readline-sync");
 let salas = ["Laboratório 1", "Laboratório 2", "Laboratório 3"];
 let temperaturas = [23.5, 29.8, 26.2];
-contadoracima27 = 0
+let contadoracima27 = 0
+let opcao
 
 while (opcao !== 7) {
-
     console.clear()
     console.log('1 - Apresentar todas as temperaturas das salas');
     console.log('2 - Registrar uma nova temperatura para uma sala.');
@@ -14,7 +14,7 @@ while (opcao !== 7) {
     console.log('6 - Alguma sala ultrapassou os 30C');
     console.log('7 - Deseja encerrar o sistema? ');
 
-    let opcao = parseInt('Escolha uma opcao de 1 a 7:')
+    opcao = parseInt(question('Escolha uma opcao de 1 a 7:'))
 
     switch (opcao) {
         case 1:
@@ -27,7 +27,7 @@ while (opcao !== 7) {
             let posicao = parseInt(question('Digite a sala: ')) - 1
             if (posicao >= 0 && posicao < salas.length) {
                 let novaTemperatura = parseFloat(question('Digite a nova temperatura '))
-                temperaturas.splice(novaTemperatura, 1)
+                temperaturas[posicao] = novaTemperatura
                 console.log(`${salas[posicao]} - ${temperaturas[posicao]}`);
             } else {
                 console.log('Sala invalida');
@@ -38,7 +38,7 @@ while (opcao !== 7) {
             let maiorTemperatura = temperaturas[0]
             let posicaoMaior = 0
             for (let i = 0; i < temperaturas.length; i++) {
-                if (temperaturas > maiorTemperatura) {
+                if (temperaturas[i] > maiorTemperatura) {
                     maiorTemperatura = temperaturas[i]
                     posicaoMaior = i
                 }
@@ -66,12 +66,15 @@ while (opcao !== 7) {
             break
 
         case 6:
+            let passou = false
             for (let i = 0; i < temperaturas.length; i++) {
                 if (temperaturas[i] > 30) {
-                    console.log(`Sim, houve sala com temperatura maior que 30C`);
-                } else {
-                    console.log('Não há temperatura maior que 30C');
-                }
+                    console.log(`${salas[i]} (sala ${i + 1}) passou de 30C: ${temperaturas[i]}`);
+                    passou = true
+                } 
+            }
+            if(!passou) {
+                    console.log('Nenhuma sala teve temperatura maior que 30C');
             }
             break
 
