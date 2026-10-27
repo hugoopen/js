@@ -1,8 +1,8 @@
 const readline = require("readline-sync")
 
-let musicas = []   // cada música vai ser um objeto: { titulo, artista, duracao }
+let musicas = []   // cada música vai ter um objeto: { titulo, artista, duracao em segundos }
 
-function cadastrar() {
+function cadastrarMusica() {
     let titulo = readline.question('digite o titulo da musica: ')
     let artista = readline.question('digite o nome do artista: ')
     let duracao = readline.questionInt('digite a duracao em segundos:')
@@ -23,7 +23,7 @@ function cadastrar() {
 }
 
 
-function listar() {
+function listarMusica() {
     if (musicas.length === 0) {
         console.log('adicione algo antes de listar')
     } else {
@@ -34,7 +34,7 @@ function listar() {
 }
 
 
-function pesquisar() {
+function pesquisarMusica() {
     if (musicas.length === 0) {
         console.log('adicione algo antes de pesquisar')
 
@@ -61,13 +61,13 @@ function pesquisar() {
 
 
 
-function atualizarDuracao() {
+function atualizarDuracaoMusica() {
 
     if (musicas.length === 0) {
         console.log('adicione algo antes de pesquisar')
 
     } else {
-        listar()
+        listarMusica()
 
         let numero = readline.question('digite o numero da musica: ')
         let posicao = numero - 1
@@ -93,11 +93,11 @@ function atualizarDuracao() {
 
 
 
-function remover() {
+function removerMusica() {
     if (musicas.length === 0) {
         console.log('adicione uma musica antes de remover')
     } else {
-        listar()
+        listarMusica()
 
         let numero = readline.questionInt('digite o numero da musica que deseja remover: ')
         let posicao = numero - 1
@@ -112,7 +112,7 @@ function remover() {
 }
 
 
-function duracaoTotal() {
+function duracaoTotalMusica() {
     let total = 0
 
     for (let i = 0; i < musicas.length; i += 1) {
@@ -146,31 +146,31 @@ while (true) {
     switch (opcao) {
 
         case 1: {
-            cadastrar()
+            cadastrarMusica()
             break
         }
 
         case 2: {
-            listar()
+            listarMusica()
             break
         }
 
         case 3: {
-            pesquisar()
+            pesquisarMusica()
             break
         }
 
         case 4: {
-            atualizarDuracao()
+            atualizarDuracaoMusica()
             break
         }
         case 5: {
-            remover()
+            removerMusica()
             break
         }
 
         case 6: {
-            duracaoTotal()
+            duracaoTotalMusica()
             break
         }
 
