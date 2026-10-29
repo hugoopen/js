@@ -1,9 +1,10 @@
 //find 
 const produtos = [
-    {Nome: 'Monitor', categoria: 'Monitores', preco: 750},
-    {Nome: 'Headset', categoria: 'Audio', preco: 500}
+    {Nome: 'Monitor', categoria: 'Monitores', preco: 850},
+    {Nome: 'Headset', categoria: 'Audio', preco: 870}
 ]
 
-let procurarProdutos = produtos.find((produtos) => {
-    return produtos.preco > 500
+let procurarProdutos = produtos.find((produto) => {
+    return produto.preco > 800
 })
+console.log(produto.preco);
