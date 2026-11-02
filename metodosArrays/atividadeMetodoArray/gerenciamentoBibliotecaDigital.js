@@ -39,26 +39,28 @@ const livros = [
         categoria: "Ficcao",
         ano: 1945,
         disponivel: true,
-        paginas: 152
+        paginas: 152 
     }
 ];
 
 let opcao
 
-while (opcao !== 10) {
+while (opcao !== 11) {
     console.clear()
     console.log('1 - Encontrar livro');
     console.log('2 - Listar livros disponiveis');
     console.log('3 - Pesquisar todos os livros de um determinado autor');
-    console.log('4 - Existe livro indisponivel');
+    console.log('4 - Exibe livro indisponivel');
     console.log('5 - Verificar todos os livros disponiveis');
     console.log('6 - Criar lista com apenas titulo e autor');
     console.log('7 - Calcular a quantidade total de paginas do catalogo');
     console.log('8 - Ordenar os livros pelo ano de publicacao');
     console.log('9 - Relatorio completo');
-    console.log('10 - Sair');
+    console.log('10 - Emprestar livro');
+    console.log('11 - Sair');
+    
 
-    opcao = questionInt('Escolha uma opcao de 1 a 10: ')
+    opcao = questionInt('Escolha uma opcao de 1 a 11: ')
 
     switch (opcao) {
         case 1:
@@ -70,24 +72,24 @@ while (opcao !== 10) {
                 console.log(`Livro nao foi encontrado`);
             }
             break
-            
-        case 2: 
+
+        case 2:
             const livroDisponivel = livros.filter(livro => {
                 return livro.disponivel === true
-            }) 
+            })
             livroDisponivel
-            .forEach( livro => console.log(`Livro: ${livro.titulo} | Disponivel: ${livro.disponivel ? 'esta disponivel' : 'nao esta disponivel'}`))
+                .forEach(livro => console.log(`Livro: ${livro.titulo} | Disponivel: ${livro.disponivel ? 'esta disponivel' : 'nao esta disponivel'}`))
             break;
 
         case 3:
             const pesquisarAutor = question('Digite o nome do autor que procura:').trim().toLowerCase()
-            const resultadoAutor = livros.filter(livro => livro.autor.trim().toLowerCase()  === pesquisarAutor )
+            const resultadoAutor = livros.filter(livro => livro.autor.trim().toLowerCase() === pesquisarAutor)
             if (resultadoAutor) {
                 resultadoAutor.forEach(livro => {
                     console.log(`Ano: ${livro.ano} - Titulo: ${livro.titulo}`);
-                    
+
                 });
-            } else{
+            } else {
                 console.log('Autor nao encontrado.');
             }
             break
@@ -96,57 +98,100 @@ while (opcao !== 10) {
             const livroIndiponivel = livros.some(livro => livro.disponivel === false)
             if (livroIndiponivel) {
                 console.log('Livros indisponiveis: ');
-                
+
                 livros
-                .filter(livro => livro.disponivel === false)
-                .forEach(livro => 
-                    console.log(`Livro: ${livro.titulo} | Disponivel: ${livro.disponivel ? 'esta disponivel' : 'nao esta disponivel'}`))
+                    .filter(livro => livro.disponivel === false)
+                    .forEach(livro =>
+                        console.log(`Livro: ${livro.titulo} | Disponivel: ${livro.disponivel ? 'esta disponivel' : 'nao esta disponivel'}`))
             } else {
                 console.log('Todos os livros disponiveis');
             }
             break
 
-        case 5: 
+        case 5:
             const verificarLivroDisponivel = livros.every(livro => livro.disponivel === true)
             if (verificarLivroDisponivel) {
                 console.log('Livros nao estao disponivel')
-            }else{
+            } else {
                 console.log('Livros disponiveis:');
             }
             livros
-            .filter(livro => livro.disponivel === true)
-            .forEach(livro => 
-                console.log(`Livro ${livro.titulo} | Disponivel: ${livro.disponivel ? 'esta disponivel' : 'nao esta disponivel'}`))
+                .filter(livro => livro.disponivel === true)
+                .forEach(livro =>
+                    console.log(`Livro ${livro.titulo} | Disponivel: ${livro.disponivel ? 'esta disponivel' : 'nao esta disponivel'}`))
             break
 
         case 6:
             const qualAutor = question('Digite o nome do autor: ').trim().toLowerCase()
 
             const criarLista = livros
-            .filter(livro => livro.autor.toLowerCase() === qualAutor)
-            .map(livro => {
-                return{
-                    titulo: livro.titulo,
-                    autor: livro.autor
-                }
-            })
+                .filter(livro => livro.autor.toLowerCase() === qualAutor)
+                .map(livro => {
+                    return {
+                        titulo: livro.titulo,
+                        autor: livro.autor
+                    }
+                })
             if (criarLista.length === 0) {
-                console.log('Autor e suas obras nao foram encntrados');
-            }else{
-                criarLista.forEach(livro =>{
+                console.log('Autor e suas obras nao foram encontrados');
+            } else {
+                criarLista.forEach(livro => {
                     console.log(`${livro.titulo} - ${livro.autor}`);
                 })
             }
             break
 
-        case 7: 
-        const quantidadeTotalPaginas = livros.reduce((total, livro) => {
-            return total + livro.paginas
-        }, 0)
-        console.log(`Este é o total de paginas do catalogo: ${quantidadeTotalPaginas}`);
-        break
+        case 7:
+            const quantidadeTotalPaginas = livros.reduce((total, livro) => {
+                return total + livro.paginas
+            }, 0)
+            console.log(`Este é o total de paginas do catalogo: ${quantidadeTotalPaginas}`);
+            break
+
+        case 8:
+            const livroOrdenado = [...livros].sort((a, b) =>
+                a.ano - b.ano)
+
+            livroOrdenado.forEach(livro => {
+                console.log(`${livro.ano} - ${livro.titulo} (${livro.autor})`);
+            });
+            break
+
+        case 9:
+            console.log('===== RELATORIO COMPLETO ======');
+            livros.forEach((livro, indice) => {
+                console.log(`${indice + 1} - ${livro.titulo}`);
+                console.log(`Autor: ${livro.autor}`);
+                console.log(`Categoria: ${livro.categoria}`);
+                console.log(`Ano: ${livro.ano}`);
+                console.log(`Disponivel: ${livro.disponivel ? 'disponivel' : 'emprestado'}`);
+                console.log(`Paginas: ${livro.paginas}`);
+            });
+            break
+
+        case 10:
+            const tituloEmprestar = question('Digite o titulo do livro: ').trim().toLowerCase()
+            const livroEmprestado = livros.find(livro => livro.titulo.toLowerCase() === tituloEmprestar)
+
+            if (!livroEmprestado) {
+                console.log('Livro nao encontrado.');
+            }else if(!livroEmprestado.disponivel){
+                console.log('Esse livro esta emprestado, escolha outro.');
+            }else{
+                livroEmprestado.disponivel = false
+                console.log(`${livroEmprestado.titulo} emprestado com sucesso.`);
+            }
+            break
+
+        case 11:
+            console.log('Sistema encerrado!');
+            break
+
         default:
+            console.log('Valor invalido, escolha uma opcao entre 1 a 11');
             break;
     }
-    question('Aperte enter para voltar ao menu')
+    if (opcao !== 11) {
+        question('Aperte enter para voltar ao menu')
+    }
 }
