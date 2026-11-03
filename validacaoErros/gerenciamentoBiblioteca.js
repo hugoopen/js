@@ -1,101 +1,167 @@
-const { question } = require("readline-sync")
-
+const readline = require("readline-sync");
 
 const livros = [
-    {
-        titulo: "JavaScript para Iniciantes",
-        autor: "Carlos Silva",
-        categoria: "Programação",
-        disponivel: true
-    },
-    {
-        titulo: "Python Básico",
-        autor: "Ana Souza",
-        categoria: "Programação",
-        disponivel: true
-    },
-    {
-        titulo: "Banco de Dados",
-        autor: "Pedro Santos",
-        categoria: "Tecnologia",
-        disponivel: false
-    }
-]
+  {
+    titulo: "JavaScript para Iniciantes",
+    autor: "Carlos Silva",
+    categoria: "Programação",
+    disponivel: true,
+  },
+  {
+    titulo: "Python Básico",
+    autor: "Ana Souza",
+    categoria: "Programação",
+    disponivel: true,
+  },
+  {
+    titulo: "Banco de Dados",
+    autor: "Pedro Santos",
+    categoria: "Tecnologia",
+    disponivel: false,
+  },
+];
 
-function cadastrarLivro(titulo, autor, categoria, disponiveis) {
-    return livros.push({
-        titulo: titulo,
-        autor: autor,
-        categoria: categoria,
-        disponivel: true
-    })
+function buscarLivro(titulo) {
+  return livros.find(
+    (l) => l.titulo.toLowerCase() === titulo.trim().toLowerCase(),
+  );
 }
 
-function listarLivros(livro) {
-    return livros.every(livro => livro.titulo.toLowerCase() === livro.titulo.toLocaleLowerCase)
+function cadastrarLivro() {
+  const titulo = readline.question("Título: ").trim();
+  const autor = readline.question("Autor: ").trim();
+  const categoria = readline.question("Categoria: ").trim();
+
+  if (titulo === "") {
+    throw new Error("O título não pode ficar vazio.");
+  }
+  if (autor === "") {
+    throw new Error("O autor não pode ficar vazio.");
+  }
+  if (buscarLivro(titulo)) {
+    throw new Error("Já existe um livro cadastrado com esse título.");
+  }
+
+  livros.push({ titulo, autor, categoria, disponivel: true });
+  console.log("Livro cadastrado com sucesso!");
 }
 
-function consultarLivro(livro) {
-    return livros.find((consultar) => consultar.livro.toLowerCase === livro.toLowerCase())
+function listarLivros() {
+  console.log("===== BIBLIOTECA =====");
+  livros.forEach((livro, i) => {
+    console.log(`${i + 1} - ${livro.titulo}`);
+    console.log(`   Autor: ${livro.autor}`);
+    console.log(`   Categoria: ${livro.categoria}`);
+    console.log(
+      `   Situação: ${livro.disponivel ? "Disponível" : "Emprestado"}`,
+    );
+  });
 }
 
-function emprestarLivro(livro) {
-    return livros.find(livro => livro.titulo.toLowerCase() === livro.titulo)
+function consultarLivro() {
+  const titulo = readline.question("Título do livro: ").trim();
+
+  if (titulo === "") {
+    throw new Error("O título deve ser informado.");
+  }
+
+  const livro = buscarLivro(titulo);
+  if (!livro) {
+    throw new Error("Livro não encontrado.");
+  }
+
+  console.log(`Título: ${livro.titulo}`);
+  console.log(`Autor: ${livro.autor}`);
+  console.log(`Categoria: ${livro.categoria}`);
+  console.log(`Situação: ${livro.disponivel ? "Disponível" : "Emprestado"}`);
+}
+
+function emprestarLivro() {
+  const titulo = readline.question("Título do livro a emprestar: ");
+  const livro = buscarLivro(titulo);
+
+  if (!livro) {
+    throw new Error("Livro não encontrado.");
+  }
+  if (!livro.disponivel) {
+    throw new Error("Esse livro já está emprestado.");
+  }
+
+  livro.disponivel = false;
+  console.log("Empréstimo realizado com sucesso!");
 }
 
 function devolverLivro() {
-    return livros.filter(livro => livro.titulo.toLowerCase() === emprestarLivro.toLowerCase())
+  const titulo = readline.question("Título do livro a devolver: ");
+  const livro = buscarLivro(titulo);
+
+  if (!livro) {
+    throw new Error("Livro não encontrado.");
+  }
+  if (livro.disponivel) {
+    throw new Error("Esse livro não está emprestado.");
+  }
+
+  livro.disponivel = true;
+  console.log("Devolução realizada com sucesso!");
 }
 
-function avisoSituacao(livro) {
-    livro.disponivel ? 'Emprestado com sucesso' : 'Ja esta emprestado'
+function listarDisponiveis() {
+  const disponiveis = livros.filter((livro) => livro.disponivel);
+  console.log("===== DISPONÍVEIS =====");
+  if (disponiveis.length === 0) {
+    console.log("Nenhum livro disponível.");
+    return;
+  }
+  disponiveis.forEach((livro) =>
+    console.log(`- ${livro.titulo} (${livro.autor})`),
+  );
 }
 
-const exibirMenu = () => {
-    console.log('1 - Cadastrar livro');
-    console.log('2 - Listar todos os livros');
-    console.log('3 - Consultar livro');
-    console.log('4 - Realizar emprestimo');
-    console.log('5 - Realizar devolucao');
-    console.log('6 - Listar livros disponiveis');
-    console.log('7 - Sair');
+function exibirMenu() {
+  console.log("\n===== MENU =====");
+  console.log("1 - Cadastrar livro");
+  console.log("2 - Listar todos os livros");
+  console.log("3 - Consultar livro");
+  console.log("4 - Realizar empréstimo");
+  console.log("5 - Realizar devolução");
+  console.log("6 - Listar livros disponíveis");
+  console.log("7 - Sair");
 }
 
-function cadastrarLivro(nome, autoNome) {
-    const nome = question('Digite o tiulo que deseja cadastrar: ').trim()
-    const autoNome = question('Digite o nome do autor: ')
-    const livro = listarLivros(nome, autoNome)
-    try {
-        if (nome.trim() === '') {
-            throw new Error('O titulo nao pode ficar vazio')
-        }
+let opcao = "";
 
-        if (autoNome.trim() === '') {
-            throw new Error('Autor nao pode ficar vazio')
-        }
+while (opcao !== "7") {
+  exibirMenu();
+  opcao = readline.question("Escolha uma opção: ").trim();
 
-        if (nome === livros.titulo) {
-            throw new Error('O titulo nao pode ser igual aos dos outros livros ')
-        }
-
-        console.log(`Livro adicionado com sucesso!`);
-
-    } catch (erro) {
-        console.error(`Erro: ${erro.message}`);
+  try {
+    switch (opcao) {
+      case "1":
+        cadastrarLivro();
+        break;
+      case "2":
+        listarLivros();
+        break;
+      case "3":
+        consultarLivro();
+        break;
+      case "4":
+        emprestarLivro();
+        break;
+      case "5":
+        devolverLivro();
+        break;
+      case "6":
+        listarDisponiveis();
+        break;
+      case "7":
+        console.log("Encerrando o sistema...");
+        break;
+      default:
+        throw new Error("Opção inválida!");
     }
-}
-
-function listarLivros(titulo, autor, categoria, disponiveis, indice) {
-    console.log('===== BIBLIOTECA =====')
-    livros.forEach((livro, indice) => {
-        console.log(`${indice + 1} - ${livro.titulo}`);
-        console.log(`Autor: ${livro.autor}`);
-        console.log(`Categoria: ${livro.categoria}`);
-        console.log(`Situacao: ${livro.disponivel? 'Disponivel' : 'Ja esta emprestado'}`);
-    });
-}
-
-function consultarLivro(){
-    const livroProcurado = question('Digite o nome do livro que deseja pesquisar: ')
-    const livroEncontrado = consultarLivro(livroProcurado)
+  } catch (erro) {
+    console.log(`Erro: ${erro.message}`);
+  }
 }
