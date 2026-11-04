@@ -52,8 +52,7 @@ function listarLivros() {
     console.log(`${indice + 1} - ${livro.titulo}`);
     console.log(`   Autor: ${livro.autor}`);
     console.log(`   Categoria: ${livro.categoria}`);
-    console.log(
-      `   Situação: ${livro.disponivel ? "Disponível" : "Emprestado"}`,
+    console.log(`   Situação: ${livro.disponivel ? "Disponível" : "Emprestado"}`,
     );
   });
 }
