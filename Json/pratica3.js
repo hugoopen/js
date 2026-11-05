@@ -14,7 +14,7 @@ function cadastrarPedido() {
         if (nomeCliente === "") {
             throw new Error("O nome do cliente nao pode ficar vazio!");
         }
-
+        //adiciona no array pedido e cria o objeto JS
         const novoPedido = {
             numero: proximoNumeroPedido++,
             cliente: nomeCliente,
@@ -41,7 +41,7 @@ function cadastrarPedido() {
             }
 
             const preco = Number(precoTexto);
-            if (precoTexto === "" || Number.isNaN(preco) || preco <= 0) {
+            if (Number.isNaN(preco) || preco <= 0) {
                 throw new Error("Preco invalido!");
             }
 
@@ -50,15 +50,15 @@ function cadastrarPedido() {
                 quantidade: quantidade,
                 preco: preco
             });
-
+            // soma os valores do novo pedido, calculo final
             novoPedido.total += (quantidade * preco);
-
-            const resposta = question("Deseja adicionar mais um produto a este pedido? (s/n): ").trim().toLowerCase();
+            // trabalhando com dupla opção, s de sim ou n de não
+            let resposta = question("Deseja adicionar mais um produto a este pedido? (s/n): ").trim().toLowerCase();
             if (resposta !== "s") {
                 adicionarMais = false;
             }
         }
-
+        //importamos ou adicionamos para dentro de array pedido, o novoPedido e o tratamos por meio de verificação, mensagem de erro.
         pedidos.push(novoPedido);
         console.log(`\nPedido n° ${novoPedido.numero} adicionado com sucesso! Total: R$ ${novoPedido.total.toFixed(2)}`);
 
@@ -79,7 +79,7 @@ function listarPedidos() {
         console.log(`\nPedido n°: ${pedido.numero} | Cliente: ${pedido.cliente} | Status: ${pedido.status}`);
         console.log("Produtos:");
         pedido.produtos.forEach((produto) => {
-            console.log(`  - ${produto.quantidade}x ${produto.nome} (R$ ${produto.preco.toFixed(2)} cada)`);
+            console.log(`  - ${produto.quantidade} x ${produto.nome} (R$ ${produto.preco.toFixed(2)} cada)`);
         });
         console.log(`Total do Pedido: R$ ${pedido.total.toFixed(2)}`);
     });
@@ -114,7 +114,6 @@ function desserializarJSON() {
     console.log("Utilize a opcao 5 para listar os pedidos recuperados.");
 }
 
-// Nova função adicionada para a opção 5
 function listarPedidosRecuperados() {
     console.log("\n===== PEDIDOS RECUPERADOS DO JSON =====");
 
@@ -144,7 +143,7 @@ function exibirMenu() {
 }
 
 let opcao;
-// Atualizado para fechar apenas no 6
+
 while (opcao !== 6) {
     exibirMenu();
     opcao = questionInt("Escolha de 1 a 6: ");
