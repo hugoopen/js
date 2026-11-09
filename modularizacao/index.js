@@ -15,11 +15,7 @@
 // console.log(dividir(10, 5));
 
 
-import { questionInt, question } from "readline-sync"
-import {} from "./produtos"
-import {} from "./relatorios"
-
-import { cadastrarProduto, listarProdutos, buscarProduto } from "./produtos.js";
+import { questionInt, question, cadastrarProduto, listarProdutos, buscarProduto } from "readline-sync"
 while (true) {
     console.clear()
     console.log("\n ======SISTEMA DE ESTOQUE=====");

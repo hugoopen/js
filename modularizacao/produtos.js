@@ -2,6 +2,7 @@
 import { perguntarNumero, perguntarTexto } from "./entrada"
 const produtos = []
 
+
 export function cadastrarProduto() {
     console.log("\n === CADASTRO PRODUTOS===");
     const nome = perguntarTexto("Nome:").trim()
