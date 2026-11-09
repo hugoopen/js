@@ -9,11 +9,11 @@ export function cadastrarTarefa() {
     const descricao = perguntarTexto("Digite a descricao: ").trim()
     const nomeResponsavel = perguntarTexto("Digite o nome do responsavel: ").trim()
     const nivelPrioridade = perguntarTexto("Digite o nivel da prioridade: ").trim()
-    const status = perguntarTexto("Digite o status da tarefa: "? "Em Andamento" : "Concluida").trim()
+    const status = perguntarTexto("Digite o status da tarefa: " ? "Em Andamento" : "Concluida").trim()
 
     const tarefa = {
         identificador: geradorIdentificador++,
-        titulo: nome,
+        titulo: titulo,
         descrição: descricao,
         responsavelTarefa: nomeResponsavel,
         nivelPrioridade: nivelPrioridade,
@@ -86,7 +86,7 @@ export function atualizarId(identificador) {
 export function listarTarefasPorStatus(status) {
     if (tarefas.length === 0) {
         console.log("Adicione uma tarefa antes de tentar consultar o status.");
-        
+
     }
 }
 
