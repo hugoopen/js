@@ -1,104 +1,162 @@
-import { perguntarTexto, perguntarNumero } from "../controleTarefas/entrada";
-const tarefas = []
-let geradorIdentificador = 0 // gerador automatico de id
+import { perguntarTexto, perguntarNumero } from "./entrada.js";
+
+export const tarefas = [
+  {
+    identificador: 1,
+    titulo: "Criar tela de login",
+    descricao: "Desenvolver a interface de acesso",
+    responsavelTarefa: "Carlos",
+    nivelPrioridade: "Alta",
+    status: "Pendente",
+  },
+  {
+    identificador: 2,
+    titulo: "Criar banco de dados",
+    descricao: "Modelar as tabelas do sistema",
+    responsavelTarefa: "Mariana",
+    nivelPrioridade: "Média",
+    status: "Em andamento",
+  },
+  {
+    identificador: 3,
+    titulo: "Documentar o projeto",
+    descricao: "Criar documentação das funcionalidades",
+    responsavelTarefa: "Pedro",
+    nivelPrioridade: "Baixa",
+    status: "Concluída",
+  },
+];
+let geradorIdentificador = 0;
+
+export const STATUS = Object.freeze({
+  PENDENTE: "Pendente",
+  EM_ANDAMENTO: "Em andamento",
+  CONCLUIDA: "Concluida",
+});
+
+export const PRIORIDADE = Object.freeze({
+  BAIXA: "Baixa",
+  MEDIA: "Media",
+  ALTA: "Alta",
+});
+
+const OPCOES_STATUS = {
+  1: STATUS.PENDENTE,
+  2: STATUS.EM_ANDAMENTO,
+  3: STATUS.CONCLUIDA,
+};
+
+const OPCOES_PRIORIDADE = {
+  1: PRIORIDADE.BAIXA,
+  2: PRIORIDADE.MEDIA,
+  3: PRIORIDADE.ALTA,
+};
+
+function perguntarStatus() {
+  console.log("\nOpcoes de status: ");
+  console.log("1 - Pendente");
+  console.log("2 - Em andamento");
+  console.log("3 - Concluida");
+
+  let status;
+  while (!status) {
+    const opcao = perguntarNumero("Digite o status: ");
+    status = OPCOES_STATUS[opcao];
+    if (!status) console.log("Opcao invalida, tente novamente.");
+  }
+  return status;
+}
+
+function perguntarPrioridade() {
+  console.log("\nNiveis de prioridade: ");
+  console.log("1 - Baixa");
+  console.log("2 - Media");
+  console.log("3 - Alta");
+
+  let prioridade;
+  while (!prioridade) {
+    const opcao = perguntarNumero("Digite a prioridade: ");
+    prioridade = OPCOES_PRIORIDADE[opcao];
+    if (!prioridade) console.log("Opcao invalida, tente novamente.");
+  }
+  return prioridade;
+}
+
+function exibirTarefas(tarefa) {
+  console.log(`ID: ${tarefa.identificador}`);
+  console.log(`Titulo: ${tarefa.titulo}`);
+  console.log(`Descricao: ${tarefa.descricao}`);
+  console.log(`Responsavel: ${tarefa.responsavelTarefa}`);
+  console.log(`Prioridade: ${tarefa.nivelPrioridade}`);
+  console.log(`Status: ${tarefa.status}`);
+}
 
 export function cadastrarTarefa() {
-    console.log("\n ===== CADASTRO DA TAREFA =====");
+  console.log("\n===== CADASTRO DA TAREFA =====");
 
-    const titulo = perguntarTexto("Digite o titulo: ").trim()
-    const descricao = perguntarTexto("Digite a descricao: ").trim()
-    const nomeResponsavel = perguntarTexto("Digite o nome do responsavel: ").trim()
-    const nivelPrioridade = perguntarTexto("Digite o nivel da prioridade: ").trim()
-    const status = perguntarTexto("Digite o status da tarefa: " ? "Em Andamento" : "Concluida").trim()
+  const titulo = perguntarTexto("Digite o titulo: ").trim();
+  const descricao = perguntarTexto("Digite a descricao: ").trim();
+  const nomeResponsavel = perguntarTexto(
+    "Digite o nome do responsavel: ",
+  ).trim();
+  const nivelPrioridade = perguntarPrioridade();
+  const status = perguntarStatus();
 
-    const tarefa = {
-        identificador: geradorIdentificador++,
-        titulo: titulo,
-        descrição: descricao,
-        responsavelTarefa: nomeResponsavel,
-        nivelPrioridade: nivelPrioridade,
-        total: 0,
-        status: "Pendente"
-    }
+  const tarefa = {
+    identificador: geradorIdentificador++,
+    titulo: titulo,
+    descricao: descricao,
+    responsavelTarefa: nomeResponsavel,
+    nivelPrioridade: nivelPrioridade,
+    status: status,
+  };
 
-    tarefa.push(tarefa)
-
-    console.log("Tarefa cadastrada com sucesso!");
-
+  tarefas.push(tarefa);
+  console.log("Tarefa cadastrada com sucesso!");
 }
 
 export function listarTarefa() {
-    console.log("\n===TAREFA ATUAL===");
-    if (tarefas.length === 0) {
-        console.log("Nenhuma tarefa cadastrada!");
-    }
-    tarefas.forEach((tarefa, indice) => {
-        console.log(`ID da tarefa: ${identificador}`);
-        console.log(`Titulo: ${tarefa.titulo} - indice: ${indice + 1}`);
-        console.log(`Descricao: ${tarefa.descricao}`);
-        console.log(`Responsavel pela tarefa: ${tarefa.responsavelTarefa}`);
-        console.log(`Nivel da prioridade da tarefa: ${tarefa.nivelPrioridade}`);
-        console.log(`Status: ${tarefa.status}`);
-    })
+  console.log("\n===== TAREFAS CADASTRADAS =====");
+  if (tarefas.length === 0) {
+    console.log("Nenhuma tarefa cadastrada!");
+    return;
+  }
+  tarefas.forEach(exibirTarefas);
 }
 
-export function buscarTarefaPorId(identificador) {
-    const buscarId = perguntarNumero("Digite o id que deseja: ").trim().toLoweCase()
-    const resultadoId = tarefas.find(tarefa => tarefa.identificador.toLoweCase() === buscarId)
-    if (resultadoId) {
-        console.log("\n===TAREFA ENCONTRADA===");
-        console.log(`Id: ${tarefa.identificador}`);
-        console.log(`Titulo: ${tarefa.titulo}`);
-        console.log(`Descricao: ${tarefa.descricao}`);
-        console.log(`Responsabilidade: ${tarefa.responsavelTarefa}`);
-        console.log(`Nivel de prioridade: ${tarefa.nivelPrioridade}`);
-        console.log(`Status: ${tarefa.status}`);
-    } else {
-        console.log("Nenhum id encontrado, tente novamente.");
+export function buscarTarefaPorId() {
+  const buscarId = perguntarNumero("Digite o id que deseja: ");
+  const resultado = tarefas.find((tarefa) => tarefa.identificador === buscarId);
 
-    }
+  if (!resultado) {
+    console.log("Nenhum id encontrado, tente novamente.");
+    return;
+  }
+  console.log("\n===== TAREFA ENCONTRADA =====");
+  exibirTarefas(resultado);
 }
 
-export function atualizarId(identificador) {
+export function atualizarStatus() {
+  const id = perguntarNumero("Digite o id da tarefa: ");
+  const tarefa = tarefas.find((tarefa) => tarefa.identificador === id);
 
-    if (tarefas.length === 0) {
-        console.log("Adicione uma tarefa antes de atualizar o id!");
-    }
-    else {
-        listarTarefa()
+  if (!tarefa) {
+    console.log("Tarefa nao encontrada.");
+    return;
+  }
 
-        let identificador = perguntarNumero("Digite o id que procura: ")
-        let id = identificador - 1
-
-
-        if (identificador < 1 || identificador > tarefas.length) {
-            console.log("Id invalido!");
-        } else {
-            let novoId = perguntarNumero("Digite o novo id: ")
-        } if (novoId < 0) {
-            console.log("O id não pode ser negativo.");
-        } else {
-            tarefas[id].geradorIdentificador = novoId
-        }
-    }
+  const novoStatus = perguntarStatus();
+  tarefa.status = novoStatus;
+  console.log(`Status atualizado para "${novoStatus}" com sucesso!`);
 }
 
 export function listarTarefasPorStatus(status) {
-    if (tarefas.length === 0) {
-        console.log("Adicione uma tarefa antes de tentar consultar o status.");
+  const encontradas = tarefas.filter((tarefa) => tarefa.status === status);
 
-    }
+  if (encontradas.length === 0) {
+    console.log(`Nenhuma tarefa com o status "${status}".`);
+    return;
+  }
+  console.log(`\n===== TAREFAS: ${status.toUpperCase()} =====`);
+  encontradas.forEach(exibirTarefas);
 }
-
-
-
-
-//• Solicitar o título da tarefa.
-//• Solicitar a descrição.
-//• Solicitar o nome do responsável.
-//• Solicitar a prioridade.
-//• Criar um objeto contendo as informações.
-//• Gerar um identificador para a nova tarefa.
-//• Definir automaticamente o status inicial como Pendente.
-//• Adicionar o objeto ao array tarefas.
-//• Exibir uma mensagem confirmando o cadastro.

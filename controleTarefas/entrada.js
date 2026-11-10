@@ -1,38 +1,36 @@
 import readline from "readline-sync";
 
-function perguntarTexto(mensagem) {
-    try{
-        if (mensagem !== "") {
-            throw new Error("Nao aceitamos valores vazios, digite algo!");
+export function perguntarTexto(mensagem) {
+    while (true) {
+        try {
+            const resposta = readline.question(mensagem).trim()
+
+            if (resposta === "") {
+                throw new Error("Nao aceitamos valores vazio, digite algo!");
+            }
+            return resposta
+        } catch (error) {
+            console.error(`Motivo: ${error.message}`);
         }
-        return readline.question(mensagem)
-    } catch (error){
-        console.error(`Motivo: ${error.message}`);
-        
     }
 }
 
-function perguntarNumero(mensagem) {
-    try {
-        if (Number.isNaN(mensagem)) {
-            throw new Error("Numero ivalido");
-        }
+export function perguntarNumero(mensagem) {
+    while (true) {
+        try {
+            const resposta = readline.question(mensagem).trim()
 
-        if (mensagem !== "") {
-            throw new Error("Numero nao pode ficar vazio, digite algo!");
+            if (resposta === "") {
+                throw new Error("O numero nao pode ficar vazio, digite algo");
+            }
+
+            const numero = Number(resposta)
+            if (Number.isNaN(numero)) {
+                throw new Error("Numero invalido, digite apenas numeros.");
+            }
+            return numero
+        } catch (error) {
+            console.error(`Motivo: ${error.message}`);
         }
-        return Number(readline.question(mensagem))
-    } catch (error) {
-        console.error(`Motivo: ${error.message}`);
     }
-}
-
-function cadastrarTarefa() {
-}
-
-
-
-module.exports = {
-    perguntarTexto,
-    perguntarNumero
 }
