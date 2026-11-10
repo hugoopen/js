@@ -6,11 +6,11 @@ export function relatorioGeral() {
   let concluidas = 0;
 
   tarefas.forEach((tarefa) => {
-    if (tarefa.status === STATUS.PENDENTE) {
+    if (tarefa.status.toLowerCase() === STATUS.PENDENTE.toLowerCase()) {
       pendentes++;
-    } else if (tarefa.status === STATUS.EM_ANDAMENTO) {
+    } else if (tarefa.status.toLowerCase() === STATUS.EM_ANDAMENTO.toLowerCase()) {
       emAndamento++;
-    } else if (tarefa.status === STATUS.CONCLUIDA) {
+    } else if (tarefa.status.toLowerCase() === STATUS.CONCLUIDA.toLowerCase()) {
       concluidas++;
     }
   });
@@ -28,11 +28,11 @@ export function relatorioPrioridades() {
   let alta = 0;
 
   tarefas.forEach((tarefa) => {
-    if (tarefa.responsavelTarefa === PRIORIDADE.BAIXA) {
+    if (tarefa.nivelPrioridade.toLowerCase() === PRIORIDADE.BAIXA.toLowerCase()) {
       baixa++;
-    } else if (tarefa.responsavelTarefa === PRIORIDADE.MEDIA) {
+    } else if (tarefa.nivelPrioridade.toLowerCase() === PRIORIDADE.MEDIA.toLowerCase()) {
       media++;
-    } else if (tarefa.responsavelTarefa === PRIORIDADE.ALTA) {
+    } else if (tarefa.nivelPrioridade.toLowerCase() === PRIORIDADE.ALTA.toLowerCase()) {
       alta++;
     }
   });
@@ -69,7 +69,7 @@ export function relatorioPorIntegrante() {
   const porIntegrante = {};
 
   tarefas.forEach((tarefa) => {
-    const nome = tarefa.responsavelTarefa;
+    const nome = tarefa.responsavelTarefa.trim().toLowerCase();
 
     if (!porIntegrante[nome]) {
       porIntegrante[nome] = [];

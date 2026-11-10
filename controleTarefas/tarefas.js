@@ -14,7 +14,7 @@ export const tarefas = [
     titulo: "Criar banco de dados",
     descricao: "Modelar as tabelas do sistema",
     responsavelTarefa: "Mariana",
-    nivelPrioridade: "Média",
+    nivelPrioridade: "Media",
     status: "Em andamento",
   },
   {
@@ -23,7 +23,7 @@ export const tarefas = [
     descricao: "Criar documentação das funcionalidades",
     responsavelTarefa: "Pedro",
     nivelPrioridade: "Baixa",
-    status: "Concluída",
+    status: "Concluida",
   },
 ];
 let geradorIdentificador = 0;
@@ -151,12 +151,12 @@ export function atualizarStatus() {
 }
 
 export function listarTarefasPorStatus(status) {
-  const encontradas = tarefas.filter((tarefa) => tarefa.status === status);
+  const encontradas = tarefas.filter((tarefa) => tarefa.status.toLowerCase() === status.toLowerCase());
 
   if (encontradas.length === 0) {
     console.log(`Nenhuma tarefa com o status "${status}".`);
     return;
   }
-  console.log(`\n===== TAREFAS: ${status.toUpperCase()} =====`);
+  console.log(`\n===== TAREFAS: ${status.toLowerCase()} =====`);
   encontradas.forEach(exibirTarefas);
 }
