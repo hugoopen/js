@@ -52,14 +52,18 @@ function pausar() {
     readline.question("\nPressione Enter para continuar...");
 }
 
+function limparTela() {
+    process.stdout.write("\x1b[2J\x1b[3J\x1b[H")
+}
+
 let executando = true;
 
 while (executando) {
-    console.clear();
+    limparTela();
     exibirMenu();
     const opcao = perguntarNumero("Escolha uma opcao: ");
 
-    console.clear();
+    limparTela();
 
     switch (opcao) {
         case 1: cadastrarTarefa(); break;
@@ -72,11 +76,12 @@ while (executando) {
         case 8: relatorioResponsaveis(); break;
         case 9: relatorioPorIntegrante(); break;
         case 0:
-            console.log("Encerrando...");
+            console.log("Programa encerrado.");
             executando = false;
             break;
         default:
             console.log("Opcao invalida, tente novamente.");
+            break
     }
 
     if (executando) pausar();
