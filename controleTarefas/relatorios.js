@@ -23,24 +23,24 @@ export function relatorioGeral() {
 }
 
 export function relatorioPrioridades() {
-  let prioridadeBaixa = 0;
-  let prioridadeMedia = 0;
-  let prioridadeAlta = 0;
+  let baixa = 0;
+  let media = 0;
+  let alta = 0;
 
   tarefas.forEach((tarefa) => {
     if (tarefa.responsavelTarefa === PRIORIDADE.BAIXA) {
-      prioridadeBaixa++;
+      baixa++;
     } else if (tarefa.responsavelTarefa === PRIORIDADE.MEDIA) {
-      prioridadeMedia++;
+      media++;
     } else if (tarefa.responsavelTarefa === PRIORIDADE.ALTA) {
-      prioridadeAlta++;
+      alta++;
     }
   });
 
   console.log("\n===== RELATORIO DE PRIORIDADES =====");
-  console.log(`Baixa: ${prioridadeBaixa}`);
-  console.log(`Media: ${prioridadeMedia}`);
-  console.log(`Alta: ${prioridadeAlta}`);
+  console.log(`Baixa: ${baixa}`);
+  console.log(`Media: ${media}`);
+  console.log(`Alta: ${alta}`);
 }
 
 export function relatorioResponsaveis() {
