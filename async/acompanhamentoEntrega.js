@@ -1,63 +1,42 @@
 const entregas = [
-    {
-        id: 101,
-        cliente: "Pedro",
-        status: "Pendente",
-        etapa: 0
-    },
-    {
-        id: 102,
-        cliente: "Juliana",
-        status: "Pendente",
-        etapa: 0
-    },
-    {
-        id: 103,
-        cliente: "Roberto",
-        status: "Pendente",
-        etapa: 0
-    }
+    { id: 101, cliente: "Pedro", status: "Pendente", etapa: 0 },
+    { id: 102, cliente: "Juliana", status: "Pendente", etapa: 0 },
+    { id: 103, cliente: "Roberto", status: "Pendente", etapa: 0 }
 ];
 
-
-
 function monitorarEntrega(listaEntregas, callback) {
-    let indice = 0
+    const statusAtualizado = ["Em transporte", "Saiu para entrega", "Entregue"];
+    let statusPorAtualizacao = 0;
 
-    const statusAtualizado = ["Em transporte", "Saiu para entrega", "Entregue"]
-    function proximoStatusEntrega() {
-        if (indice < listaEntregas.length) {
-            console.log("Monitoramento iniciado!");
+    console.log("Monitoramento iniciado!");
 
-            const entrega = listaEntregas[indice]
-            console.log("Atualizacao 1 (2s)");
+    const intervalo = setInterval(() => {
+        console.log(`\nAtualização ${statusPorAtualizacao + 1} (${(statusPorAtualizacao + 1) * 2}s)`);
 
-            setInterval(() => {
-                entrega.status = "Em transporte"
-                console.log(`Pedido ${entrega.id}: ${entrega.status}`);
-                
-                indice++
-                proximoStatusEntrega()
-            }, 2000);
+        // atualiza TODAS as entregas de forma unidas
+        listaEntregas.forEach((entrega) => {
+            entrega.status = statusAtualizado[statusPorAtualizacao];
+            entrega.etapa = statusPorAtualizacao + 1;
+            console.log(`Pedido ${entrega.id}: ${entrega.status}`);
+        });
 
+        statusPorAtualizacao++;
+
+        // terminou todos os status: para o timer e finaliza
+        if (statusPorAtualizacao === statusAtualizado.length) {
+            clearInterval(intervalo);
+            console.log("\nResumo das entregas:");
+            console.table(listaEntregas);
+            callback();
         }
-        else {
-            console.log("\nResumo das entregas:")
-            // console.table(listaEntregas)
-            clearInterval(intervalo)
-            callback()
-        }
-    }
-
-    proximoStatusEntrega()
+    }, 2000);
 }
 
 function encerrarSistema() {
-    console.log("Sistema encerraso.");
+    console.log("Sistema encerrado.");
 }
 
-monitorarEntrega(entregas, encerrarSistema)
-
+monitorarEntrega(entregas, encerrarSistema);
 /*
 1. Criar uma função monitorarEntregas(callback).
 2. Utilizar setInterval() para atualizar o sistema automaticamente a cada 2 segundos.
