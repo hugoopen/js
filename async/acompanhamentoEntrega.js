@@ -22,7 +22,7 @@ function monitorarEntrega(listaEntregas, callback) {
 
         statusPorAtualizacao++;
 
-        // terminou todos os status: para o timer e finaliza
+        // terminou todos os status: para o timer (temporizador) e finaliza
         if (statusPorAtualizacao === statusAtualizado.length) {
             clearInterval(intervalo);
             console.log("\nResumo das entregas:");
@@ -48,3 +48,18 @@ entregues.
 interromper o monitoramento.
 7. Executar um callback para apresentar uma mensagem de finalização.
 */
+
+/*
+1- Qual a diferença entre setInterval() e setTimeout()?
+Depende da quantidade de repetição da função que é executada, setTimeout: Executa uma única vez após o tempo de espera definido, já setInterval, depende da quantidades de loop definido ou não definidos, para parar esse loop, é obrigado usar o clearInterval(), caso contrario, ele roda repetidamente.
+
+2-  Por que precisamos utilizar clearInterval()?
+Para parar justamente o laço de repetição do setInterval (seja ele definido ou não), impedindo o consumo desnecessário de memória e processamento do navegador após a execução.
+
+3- Como o programa identifica que todas as entregas foram concluídas?
+Antes de finalizar, a variável statusPorAtualizacao recebe incrementos (statusPorAtualizacao++) a cada laço de repetição (ciclo), avançando pelos níveis de status da lista. O programa identifica que todas as entregas foram concluídas quando esse contador se torna estritamente igual (===) à quantidade total de elementos da lista (statusAtualizado.length).
+
+4- Qual é a responsabilidade da função callback nesse sistema?
+A responsabilidade da função callback nesse sistema é definir e executar a etapa final (como exibir "Sistema Encerrado", validar resultados com if ou atualizar a tela), garantindo que essas ações aconteçam somente após o término completo do ciclo de entregas.
+ */
+
