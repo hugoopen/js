@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+.jockey-one-regular {
+  font-family: "Jockey One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 h1 {
   display: flex;
   position: relative;
@@ -24,6 +30,7 @@ form {
   align-items: center;
   justify-content: space-between;
 }
+
 .login {
   position: relative;
   display: flex;
@@ -42,7 +49,9 @@ label {
   position: relative;
   flex-direction: column;
   color: rgb(3, 2, 41);
+  font-size: 20px;
 }
+
 .field-senha {
   display: flex;
   flex-direction: column;
@@ -51,7 +60,7 @@ label {
 }
 
 input {
-  height: 30px;
+  height: 40px;
 }
 
 button {
