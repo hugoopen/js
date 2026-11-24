@@ -1,40 +1,34 @@
 <html lang="pt-br">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tela Login</title>
-    <link rel="stylesheet" href="style.css" />
-    <script src="script.js" defer></script>
-    <style>
+                                                                                  
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tela Login</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
     @import url('https://fonts.googleapis.com/css2?family=Jockey+One&display=swap');
-    </style>
-  </head>
+  </style>
+</head>
 
-  <body>
-    <figure>
-        <img src="icon/Competicoes-Senac-2025.png" alt="imagem de fundo da tela de login" class="imagemSenac">
-    </figure>
-    <form id="form-login" class="formulario">
-      <h1 id="titulo-login" class="login-titulo">Sistema de Gestão Competições Senac</h1>
-      <div class="field-email">
-        <label for="login-email">E-mail:</label>
-        <input
-          id="login-email"
-          type="email"
-          placeholder="voce@email.com"
-          required
-        />
-      </div>
-      <div class="field-senha">
-        <label for="login-senha">Senha:</label>
-        <input id="login-senha" 
-        type="password"
-        placeholder="Digite sua senha aqui" 
-        required />
-      </div>
-      <p class="erro"></p>
-      <button id="btn-entrar" type="submit" class="botao">Entrar</button>
-      <a href="#" id="ir-cadastro">Cadastre-se</a>
-    </form>
-  </body>
+<body>
+  <figure>
+    <img src="icon/Competicoes-Senac-2025.png" alt="imagem de fundo da tela de login" class="imagemSenac">
+  </figure>
+  <form id="form-login" class="formulario">
+    <h1 id="titulo-login" class="login-titulo">Sistema de Gestão Competições Senac</h1>
+    <div class="field-email">
+      <label for="login-email">E-mail:</label>
+      <input id="login-email" type="email" placeholder="voce@email.com" required />
+    </div>
+    <div class="field-senha">
+      <label for="login-senha">Senha:</label>
+      <input id="login-senha" type="password" placeholder="Digite sua senha aqui" required />
+    </div>
+    <p class="erro"></p>
+    <button id="btn-entrar" type="submit" class="botao">Entrar</button>
+    <a href="#" id="ir-cadastro">Cadastre-se</a>
+  </form>
+  <script src="script.js"></script>
+</body>
+
 </html>
