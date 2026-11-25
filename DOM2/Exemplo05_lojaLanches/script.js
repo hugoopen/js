@@ -1,5 +1,5 @@
 const btnTema = document.querySelector("#btnTema")
-btnTema.addEventListener("click", function(){
+btnTema.addEventListener("click", function () {
     document.body.classList.toggle("escuro")
 })
 
@@ -13,7 +13,7 @@ const resultado = document.getElementById("resultado")
 const resumo = document.getElementById("resumo")
 
 function formatoReal(valor) {
-    return valor.toLocaleString("pt-br", {style: "currency", currency: "BRL"})
+    return valor.toLocaleString("pt-br", { style: "currency", currency: "BRL" })
 }
 
 function adicionarLinha(texto) {
@@ -22,11 +22,18 @@ function adicionarLinha(texto) {
     resumo.appendChild(p)
 }
 
+function mostrarMensagem(texto, tipo) {
+    mensagem.textContent = texto
+    mensagem.classList.remove("sucesso", "erro")
+    if (tipo) {
+        mensagem.classList.add(tipo)
+    }
+}
+
 btnCalcular.addEventListener("click", () => {
     const cliente = inputCliente.value.trim()
     const preco = Number(selectProduto.value)
     const quantidade = Number(inputQuantidade.value)
-
 
     if (cliente === "") {
         mostrarMensagem("Digite o nome do cliente!", "erro")
@@ -42,6 +49,29 @@ btnCalcular.addEventListener("click", () => {
         mostrarMensagem("Digite uma quantidade válida!", "erro")
         return
     }
+
+    const opcao = selectProduto.options[selectProduto.selectedIndex]
+    const nomeProduto = opcao.text.split(" - ")[0]
+
+    const total = preco * quantidade
+
+    // resumo
+    resumo.textContent = ""
+    adicionarLinha(`Cliente: ${cliente}`)
+    adicionarLinha(`Produto: ${nomeProduto}`)
+    adicionarLinha(`Quantidade: ${quantidade}`)
+    adicionarLinha(`Valor unitário: ${formatoReal(preco)}`)
+    adicionarLinha(`Total: ${formatoReal(total)}`)
+
+    mostrarMensagem("Pedido calculado com sucesso!", "sucesso")
+    resultado.classList.remove("oculto")
 })
 
-
+btnLimpar.addEventListener("click", () => {
+    inputCliente.value = ""
+    selectProduto.value = ""
+    inputQuantidade.value = ""
+    mostrarMensagem("")
+    resumo.textContent = ""
+    resultado.classList.add("oculto")
+})
