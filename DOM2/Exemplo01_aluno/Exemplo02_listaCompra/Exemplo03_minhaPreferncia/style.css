@@ -1,0 +1,39 @@
+*{
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #efecf7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.cartao {
+    background-color: rgb(215, 212, 226);
+    padding: 50px;
+    border-radius: 12px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 4px 15px #0002;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    border: none;
+    border-radius: 8px;
+    background-color: #3440e4;
+    color: white;
+    cursor: pointer;
+}
+
+.tarefa-alterado {
+    color: #3440e4;
+    font-weight: bold;
+}
