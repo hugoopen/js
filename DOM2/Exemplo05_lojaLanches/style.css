@@ -1,0 +1,117 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    min-height: 100vh;
+    margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    transition: 0.3s;
+}
+
+.container {
+    background-color: white;
+    width: 450px;
+    max-width: 95%;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px #00000015;
+}
+
+h1 {
+    color: #e67e22;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    background-color: #e67e22;
+    color: white;
+    transition: 0.3s;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#btnLimpar {
+    background-color: #64748b;
+}
+
+#btnTema {
+    background-color: #333;
+}
+
+#resultado {
+    background-color: #f1f5f9;
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+}
+
+.oculto {
+    display: none;
+}
+
+.sucesso {
+    color: #15803d;
+    font-weight: bold;
+}
+
+.erro {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.escuro {
+    background-color: #111827;
+    color: white;
+}
+
+.escuro .container {
+    background-color: #1f2937;
+}
+
+.escuro #resultado {
+    background-color: #374151;
+}
+
+.escuro .sucesso {
+    color: #86efac;
+}
+
+.escuro .erro {
+    color: #fca5a5;
+}

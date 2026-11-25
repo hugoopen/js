@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1 id="titulo">TechStore</h1>
+        <p>Catálogo de produtos tecnológicos</p>
+    </header>
+    <main>
+        <section class="cliente">
+            <h2>Identificação do cliente</h2>
+            <input type="text" id="nome" placeholder="Digite seu nome">
+            <button id="btnSaudar">Saudar cliente</button>
+            <p id="mensagem">Seja bem-vindo à nossa loja!</p>
+        </section>
+        <section class="produtos">
+            <div class="card">
+                <span>🖱️</span>
+                <h3>Mouse</h3>
+                <p>R$ 80,00</p>
+            </div>
+
+            <div class="card">
+                <span>⌨️</span>
+                <h3>Teclado</h3>
+                <p>R$ 150,00</p>
+            </div>
+
+            <div class="card">
+                <span>🎧</span>
+                <h3>Headset</h3>
+                <p>R$ 200,00</p>
+            </div>
+        </section>
+        <section class="acoes">
+            <button id="btnTitulo">Alterar título</button>
+            <button id="btnPrimeiro">Destacar primeiro</button>
+            <button id="btnTodos">Destacar todos</button>
+            <button id="btnRemover">Remover destaque</button>
+        </section>
+    </main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SnackHouse</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <button id="btnTema">Alterar tema</button>
+
+        <h1>🍔 SnackHouse</h1>
+        <p>Monte seu pedido de forma rápida!</p>
+
+        <label for="cliente">Nome do cliente</label>
+        <input type="text" id="cliente"
+               placeholder="Digite seu nome">
+
+        <label for="produto">Produto</label>
+
+        <select id="produto">
+            <option value="">Selecione um produto</option>
+            <option value="15">Hambúrguer - R$ 15,00</option>
+            <option value="8">Batata frita - R$ 8,00</option>
+            <option value="6">Refrigerante - R$ 6,00</option>
+            <option value="25">Combo especial - R$ 25,00</option>
+        </select>
+
+        <label for="quantidade">Quantidade</label>
+        <input type="number" id="quantidade"
+               min="1" placeholder="Digite a quantidade">
+
+        <div class="botoes">
+            <button id="btnCalcular">Calcular pedido</button>
+            <button id="btnLimpar">Limpar</button>
+        </div>
+
+        <p id="mensagem"></p>
+
+        <section id="resultado" class="oculto">
+            <h2>Resumo do pedido</h2>
+            <div id="resumo"></div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
