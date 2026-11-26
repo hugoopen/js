@@ -1,0 +1,10 @@
+# Dependências e ferramentas
+node_modules/
+
+# Arquivos ocultos do Windows e Mac
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# Arquivos de ambiente (chaves de API / senhas)
+.env
