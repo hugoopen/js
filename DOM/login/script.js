@@ -6,9 +6,9 @@
 // const email = document.getElementById("login-email")
 // console.log(email.value);
 
-// const nada = 
-// document.getElementById("naoexiste")
-// console.log(nada);
+const nada = 
+document.getElementById("naoexiste")
+console.log(nada);
 
 const emailLogin =
 document.querySelector("#login-email")
