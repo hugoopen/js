@@ -56,7 +56,7 @@ btnCalcular.addEventListener("click", () => {
     const total = preco * quantidade
 
     // resumo
-    resumo.textContent = ""
+    resumo.innerHTML = ""
     adicionarLinha(`Cliente: ${cliente}`)
     adicionarLinha(`Produto: ${nomeProduto}`)
     adicionarLinha(`Quantidade: ${quantidade}`)
@@ -72,6 +72,7 @@ btnLimpar.addEventListener("click", () => {
     selectProduto.value = ""
     inputQuantidade.value = ""
     mostrarMensagem("")
-    resumo.textContent = ""
+    resumo.innerHTML = ""
     resultado.classList.add("oculto")
+    inputCliente.focus()
 })

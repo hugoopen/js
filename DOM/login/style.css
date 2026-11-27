@@ -20,7 +20,7 @@ h1 {
 .login-titulo {
   display: flex;
   margin-top: 20%;
-  color: rgb(26, 24, 24);
+  color: #FFFFFF; text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 form {
@@ -49,7 +49,7 @@ label {
   display: flex;
   position: relative;
   flex-direction: column;
-  color: rgb(3, 2, 41);
+  color: #FFFFFF; text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
   font-size: 20px;
 }
 
@@ -86,7 +86,7 @@ button {
 }
 
 a {
-  color: rgb(10, 10, 10);
+  color: #FFFFFF; text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.7);
   display: flex;
   margin-top: 20px;
 }
