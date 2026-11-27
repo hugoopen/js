@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "titulo": "Código Limpo",
+        "autor": "Robert C. Martin",
+        "categoria": "Programação",
+        "ano": 2008,
+        "disponivel": true
+    },
+    {
+        "id": 2,
+        "titulo": "O Programador Pragmático",
+        "autor": "Andrew Hunt e David Thomas",
+        "categoria": "Programação",
+        "ano": 1999,
+        "disponivel": true
+    },
+    {
+        "id": 3,
+        "titulo": "1984",
+        "autor": "George Orwell",
+        "categoria": "Literatura",
+        "ano": 1949,
+        "disponivel": false
+    },
+    {
+        "id": 4,
+        "titulo": "A Máquina do Tempo",
+        "autor": "H. G. Wells",
+        "categoria": "Literatura",
+        "ano": 1895,
+        "disponivel": true
+    },
+    {
+        "id": 5,
+        "titulo": "A Quarta Revolução Industrial",
+        "autor": "Klaus Schwab",
+        "categoria": "Tecnologia",
+        "ano": 2016,
+        "disponivel": true
+    },
+    {
+        "id": 6,
+        "titulo": "Entendendo Algoritmos",
+        "autor": "Aditya Bhargava",
+        "categoria": "Programação",
+        "ano": 2016,
+        "disponivel": true
+    }
+]
